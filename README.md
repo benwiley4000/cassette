@@ -1,3 +1,15 @@
+### Please note that open-source maintenance is not my main focus at the moment.
+
+I will not be investing significant effort in the very near future to review and address issues on this repository. However I do want my software to be useable!
+
+If you have an issue that must be resolved for your work, please open a pull request to fix it, and send me a direct email to make sure that I see it. I ignore most messages from GitHub these days.
+
+I'm also happy to help out if you have a question about how to use the library.
+
+My email can be found [at the top of this commit](https://github.com/benwiley4000/cassette/commit/d1a828ac146f357adec963ccfaad56a48155b8b6.patch).
+
+Keep in mind that I have a full-time job and a personal life as well as other hobbies that have taken priority over open source, so I might not respond immediately. But don't hesitate to follow up after a few days if you think I've missed your email.
+
 # Cassette
 
 <img alt="https://www.pexels.com/photo/black-lx90-cassette-tape-1228497/" src="cassette.jpg" title="Photo by Stas Knop from Pexels" />
