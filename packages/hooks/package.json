@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "rimraf": "^2.5.4",
-    "webpack": "^4.17.1"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "@cassette/core": "^2.0.0-beta.4",
