@@ -44,7 +44,7 @@
   "devDependencies": {
     "array-find-index": "^1.0.2",
     "rimraf": "^2.5.4",
-    "webpack": "^4.17.1"
+    "webpack": "^5.75.0"
   },
   "dependencies": {
     "prop-types": "^15.5.10"
