@@ -916,9 +916,7 @@ export class PlayerContextProvider extends Component {
   goToTrack(args) {
     clearTimeout(this.delayTimeout);
     this.setState(prevState => {
-      const requestedState = { prevState, ...args };
-      const newState = this.beforeTrackChange(requestedState);
-      return getGoToTrackState(newState);
+      return getGoToTrackState({ prevState, ...this.beforeTrackChange(args) });
     });
   }
 
@@ -937,11 +935,11 @@ export class PlayerContextProvider extends Component {
     this.goToTrack({ index, track: playlist[index] });
   }
 
-  beforeTrackChange(requestedState) {
+  beforeTrackChange(args) {
     if (this.props.onBeforeTrackChange) {
-      return this.props.onBeforeTrackChange(requestedState);
+      return this.props.onBeforeTrackChange(args);
     }
-    return requestedState;
+    return args;
   }
 
   backSkip() {
@@ -1345,8 +1343,10 @@ PlayerContextProvider.propTypes = {
    */
   onActiveTrackUpdate: PropTypes.func,
   /**
-   * A function called before current track witll changed with the context of
-   * the new track: an object with properies: `index`, `track` and `prevState`
+   * A function called before current track with change with the context of
+   * the new track: an object with new track details from playlist: `index` and `track`.
+   * This function should return the same object structure with same or different valid data.
+   * It's useful to skip some tracks of being played.
    */
   onBeforeTrackChange: PropTypes.func,
   /**
