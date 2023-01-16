@@ -23,7 +23,8 @@ class ExamplePlayerContextProvider extends React.Component {
         defaultMuted: true,
         defaultShuffle: false,
         crossOrigin: 'anonymous',
-        initialStateSnapshot: this.initialStateSnapshot
+        initialStateSnapshot: this.initialStateSnapshot,
+        onStateSnapshot: this.handleStateSnapshot
       },
       this.props.children
     );
