@@ -77,14 +77,16 @@
 
     <script src="example/playlist.js"></script>
     <script src="example/ExampleApp.js"></script>
+    <script src="example/ExampleBeforeTrackChange.js"></script>
     <script src="example/ExamplePlayerContextProvider.js"></script>
+    <script src="example/ExampleBeforeTrackChangeContextProvider.js"></script>
     <script src="example/ExampleMediaPlayer.js"></script>
     <script src="example/ExampleMediaInfo.js"></script>
     <script src="example/ExampleMuteMessage.js"></script>
     <script>
       window.onload = function() {
         ReactDOM.render(
-          React.createElement(ExampleApp, { playlist: playlist }),
+          React.createElement(ExampleBeforeTrackChange, { playlist: playlist }),
           document.getElementById('media_player_container')
         );
       }

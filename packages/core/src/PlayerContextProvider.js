@@ -207,6 +207,7 @@ export class PlayerContextProvider extends Component {
     // bind callback methods to pass to descendant elements
     this.togglePause = this.togglePause.bind(this);
     this.selectTrackIndex = this.selectTrackIndex.bind(this);
+    this.beforeTrackChange = this.beforeTrackChange.bind(this);
     this.forwardSkip = this.forwardSkip.bind(this);
     this.backSkip = this.backSkip.bind(this);
     this.seekPreview = this.seekPreview.bind(this);
@@ -914,7 +915,11 @@ export class PlayerContextProvider extends Component {
   // assumes playlist is valid - don't call without checking
   goToTrack(args) {
     clearTimeout(this.delayTimeout);
-    this.setState(prevState => getGoToTrackState({ prevState, ...args }));
+    this.setState(prevState => {
+      const requestedState = { prevState, ...args };
+      const newState = this.beforeTrackChange(requestedState);
+      return getGoToTrackState(newState);
+    });
   }
 
   selectTrackIndex(index) {
@@ -930,6 +935,13 @@ export class PlayerContextProvider extends Component {
       this.shuffler.pickNextItem(index, this.state.activeTrackIndex);
     }
     this.goToTrack({ index, track: playlist[index] });
+  }
+
+  beforeTrackChange(requestedState) {
+    if (this.props.onBeforeTrackChange) {
+      return this.props.onBeforeTrackChange(requestedState);
+    }
+    return requestedState;
   }
 
   backSkip() {
@@ -1333,6 +1345,11 @@ PlayerContextProvider.propTypes = {
    */
   onActiveTrackUpdate: PropTypes.func,
   /**
+   * A function called before current track witll changed with the context of
+   * the new track: an object with properies: `index`, `track` and `prevState`
+   */
+  onBeforeTrackChange: PropTypes.func,
+  /**
    * A function called when the media element's `currentTime` attribute has
    * changed. Passed an object with the properties `currentTime`, `track` and
    * `trackIndex`
@@ -1403,7 +1420,7 @@ export class PlayerContextGroupMember extends Component {
   }
 
   render() {
-    const { groupContext, props } = this.props;
+    const { groupContext, ...props } = this.props;
     const { mediaElementRef, ...rest } = props;
     return (
       <PlayerContextProvider

@@ -3,7 +3,7 @@
 
 var gulp = require('gulp');
 var path = require('path');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var postcss = require('gulp-postcss');
 var uglifycss = require('gulp-uglifycss');
 var rename = require('gulp-rename');
