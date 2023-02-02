@@ -79,7 +79,7 @@
     "gulp-uglifycss": "^1.0.8",
     "husky": "^1.0.0-rc.14",
     "jest": "^24.7.1",
-    "lerna": "^3.15.0",
+    "lerna": "^6.4.1",
     "lint-staged": "^7.2.2",
     "mini-css-extract-plugin": "^0.2.0",
     "node-sass": "^4.11.0",
